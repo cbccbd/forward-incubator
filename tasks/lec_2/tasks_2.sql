@@ -1,5 +1,4 @@
---1.1 два результата
-
+--1.1 РґРІР° СЂРµР·СѓР»СЊС‚Р°С‚Р°
 SELECT DISTINCT F_SUM, DT_EVENT 
 FROM 
 TRANS_EXTERNAL TE, 
@@ -14,7 +13,7 @@ AND FWC.V_EXT_IDENT = '0102100000088207_MG1';
 
 
 
---2. Выбран ID_PARENT потому, что null выводятся только с ним (хотя это же ссылка на себя?)
+--2. Р’С‹Р±СЂР°РЅ ID_PARENT РїРѕС‚РѕРјСѓ, С‡С‚Рѕ null РІС‹РІРѕРґСЏС‚СЃСЏ С‚РѕР»СЊРєРѕ СЃ РЅРёРј (С…РѕС‚СЏ СЌС‚Рѕ Р¶Рµ СЃСЃС‹Р»РєР° РЅР° СЃРµР±СЏ?)
 SELECT 
 FWC.V_EXT_IDENT AS V_E_ID,
 FWC.DT_REG_EVENT AS DT_REG,
@@ -53,10 +52,10 @@ TE.F_SUM,
 TE.DT_EVENT, 
 DEP.V_NAME;
 
---5. WHERE вместо HAVING. 
-/*Во внутреннем запросе тот же результат 
-(как ни крутил у всех не меньше 5-ти оплат. 
-Даже с разделением на статусы)*/
+--5. WHERE РІРјРµСЃС‚Рѕ HAVING. 
+/*Р’Рѕ РІРЅСѓС‚СЂРµРЅРЅРµРј Р·Р°РїСЂРѕСЃРµ С‚РѕС‚ Р¶Рµ СЂРµР·СѓР»СЊС‚Р°С‚ 
+(РєР°Рє РЅРё РєСЂСѓС‚РёР» Сѓ РІСЃРµС… РЅРµ РјРµРЅСЊС€Рµ 5-С‚Рё РѕРїР»Р°С‚. 
+Р”Р°Р¶Рµ СЃ СЂР°Р·РґРµР»РµРЅРёРµРј РЅР° СЃС‚Р°С‚СѓСЃС‹)*/
 
 SELECT * FROM 
 (SELECT 
@@ -70,7 +69,7 @@ TE.DT_EVENT BETWEEN TO_DATE('2017-01-01', 'YYYY-MM-DD') AND TO_DATE('2017-12-31'
 GROUP BY FWC.V_EXT_IDENT, FWC.V_STATUS)
 WHERE TRANS > 3;
 
---6. Так же Выбран ID_PARENT потому, что null выводятся только с ним (хотя это же ссылка на себя?)
+--6. РўР°Рє Р¶Рµ Р’С‹Р±СЂР°РЅ ID_PARENT РїРѕС‚РѕРјСѓ, С‡С‚Рѕ null РІС‹РІРѕРґСЏС‚СЃСЏ С‚РѕР»СЊРєРѕ СЃ РЅРёРј (С…РѕС‚СЏ СЌС‚Рѕ Р¶Рµ СЃСЃС‹Р»РєР° РЅР° СЃРµР±СЏ?)
 SELECT CONTRACT, STATUS, DEPARTAMENT FROM
 (SELECT FWC.V_EXT_IDENT AS CONTRACT, 
 COUNT(TE.ID_TRANS) AS TRANS,
@@ -111,7 +110,7 @@ ON TE.ID_CONTRACT = FWC.ID_CONTRACT_INST
 WHERE TE.ID_TRANS = '6397542'
 AND FWC.DT_START < TO_DATE('02-01-2016', 'DD-MM-YYYY');
 
---10. Чтобы не использовать HAVING обернул запросом с WHERE (есть ли способы получше)?
+--10. Р§С‚РѕР±С‹ РЅРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ HAVING РѕР±РµСЂРЅСѓР» Р·Р°РїСЂРѕСЃРѕРј СЃ WHERE (РµСЃС‚СЊ Р»Рё СЃРїРѕСЃРѕР±С‹ РїРѕР»СѓС‡С€Рµ)?
 SELECT ID_CON, CONTRACT, STATUS, V_NAME
 FROM
 (SELECT DISTINCT 
