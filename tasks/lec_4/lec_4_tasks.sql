@@ -43,7 +43,7 @@ CURSOR edit_or_del IS
 
 BEGIN
 
---посчитал, что регулярка на один строковый объект много не съест. иначе писать огромную простыню
+--РїРѕСЃС‡РёС‚Р°Р», С‡С‚Рѕ СЂРµРіСѓР»СЏСЂРєР° РЅР° РѕРґРёРЅ СЃС‚СЂРѕРєРѕРІС‹Р№ РѕР±СЉРµРєС‚ РјРЅРѕРіРѕ РЅРµ СЃСЉРµСЃС‚. РёРЅР°С‡Рµ РїРёСЃР°С‚СЊ РѕРіСЂРѕРјРЅСѓСЋ РїСЂРѕСЃС‚С‹РЅСЋ
 IF regexp_instr(p_IP_ADDRESS,'^([01]?\d\d?|2[0-4]\d|25[0-5])\.([01]?\d\d?|2[0-4]\d|25[0-5])\.([01]?\d\d?|
 2[0-4]\d|25[0-5])\.([01]?\d\d?|2[0-4]\d|25[0-5])$') = 0
     THEN RAISE invalid_ip;
@@ -151,8 +151,8 @@ END saveCOMMUTATOR;
 create or replace PROCEDURE getCOMMUTATOR
     (
     p_IP_ADDRESS IN INCB_COMMUTATOR.IP_ADDRESS%TYPE,
-    /*т.к. уникальность IP и MAC обеспечена в методе saveCOMMUTATOR,
-    можно подавать на вход только IP*/
+    /*С‚.Рє. СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚СЊ IP Рё MAC РѕР±РµСЃРїРµС‡РµРЅР° РІ РјРµС‚РѕРґРµ saveCOMMUTATOR,
+    РјРѕР¶РЅРѕ РїРѕРґР°РІР°С‚СЊ РЅР° РІС…РѕРґ С‚РѕР»СЊРєРѕ IP*/
     out_COMMUTATOR OUT INCB_COMMUTATOR%ROWTYPE
     )
 
@@ -201,8 +201,8 @@ END;
 create or replace FUNCTION check_access_comm 
     (
     f_IP_ADDRESS IN INCB_COMMUTATOR.IP_ADDRESS%TYPE,
-    V_COMMUNITY IN INCB_COMMUTATOR.V_COMMUNITY_READ%TYPE, -- доступ на чтение ИЛИ запись
-    B_MODE_WRITE IN NUMBER -- 0 - чтение, 1 - запись
+    V_COMMUNITY IN INCB_COMMUTATOR.V_COMMUNITY_READ%TYPE, 
+    B_MODE_WRITE IN NUMBER
     )
     RETURN NUMBER
 IS
@@ -337,7 +337,7 @@ RETURN acc_ne_acc;
 END check_access_comm;
 
 --4.
---Не понимаю в чём дело. При чём ошибки каждый раз разные...
+--РќРµ РїРѕРЅРёРјР°СЋ РІ С‡С‘Рј РґРµР»Рѕ. РџСЂРё С‡С‘Рј РѕС€РёР±РєРё РєР°Р¶РґС‹Р№ СЂР°Р· СЂР°Р·РЅС‹Рµ...
 SET SERVEROUTPUT ON;
 CREATE OR REPLACE TYPE nested_table IS TABLE OF NUMBER;
 
